@@ -7,7 +7,7 @@ class JiraSlurper < Formula
     def release() "1" end   # custom release field
 
     homepage 'https://github.com/alexsaar/taps/wiki/JIRA-Slurper'
-    url "https://github.com/alexsaar/taps/blob/master/slurp"
+    url "https://raw.githubusercontent.com/alexsaar/homebrew-taps/master/slurp"
     sha1 'c2eb9e3e1aa46200c3474b8ce39245d0b073bd23'
 
     # dependencies
