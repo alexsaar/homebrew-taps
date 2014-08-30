@@ -18,13 +18,13 @@ class JiraSlurper < Formula
         # this is garbage
         puts "Cleaning up samples..."
         rm Dir["samples"]
+        
+        # move to bin folder
+        puts "Moving stuff to bin..."
+        Dir.mkdir "bin"
+        Dir['*'].each { |f| mv f, "bin/" }
 
         prefix.install_metafiles
         prefix.install Dir['*']
-    end
-
-    test do
-        puts "version: #{version}-#{release}"
-        %x[ jira ]
     end
 end
