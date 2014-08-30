@@ -1,0 +1,68 @@
+#!/usr/bin/env groovy
+
+/* 
+ * generate lead times for IW issues
+ *
+ * Uses JIRA REST API: https://docs.atlassian.com/software/jira/docs/api/REST/latest/
+ */
+
+import groovy.util.CliBuilder
+
+D_FILE = "issues.txt"
+
+enum FieldNames {
+	p ("project"), t ("type"), prio ("priority"), e ("epic"), l ("labels"), 
+	c ("components"), s ("summary"), d ("description"), fix ("fixVersion");
+
+    private final String name;       
+    private FieldNames(String s) { name = s; }
+    public String toString() { return name; }
+	public static boolean contains(String s) {
+		for (FieldNames name:values()) {
+			if (name.name().equals(s)) return true;
+		}
+		return false;
+	}
+}
+
+cli = new CliBuilder(usage:'./slurp [options]', header:'Options:')
+cli.with {
+	h longOpt: 'help', 'Show usage information'
+	f longOpt: 'file', args: 1, argName: 'file', "file to slurp (defaults to ${D_FILE})"
+}
+
+opts = cli.parse(args)
+
+if (!opts || opts.help) cli.usage()
+else slurp(opts)
+
+def slurp(opts) {
+	File f = new File(opts.file ? opts.file : D_FILE)
+	if(!f.exists()) { println "${f} does not exist"; cli.usage() }
+	else {
+		println "processing ${f}"
+		def issues = []
+		
+		def issue = [:]
+		f.eachLine { line ->
+			if (line.trim()) {
+				def (key, value) = line.split(':').collect { it.trim() }
+				issue[FieldNames.contains("$key") ? FieldNames.valueOf("$key") : "$key"] = value
+			} else {
+				if(issue) {
+					issues << issue
+					issue = [:]
+				}
+			}
+		}
+	    if(issue) {
+	      issues << issue
+	    }
+		
+		issues.eachWithIndex { it, index ->
+			print "jira --action createIssue "
+			it.each { k, v -> print " --$k \"$v\"" }
+			println ""
+		}
+	}
+}
