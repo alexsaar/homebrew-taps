@@ -22,7 +22,8 @@ class JiraSlurper < Formula
         # move to bin folder
         puts "Moving stuff to bin..."
         Dir.mkdir "bin"
-        Dir['jira-slurper/*'].each { |f| mv f, "bin/#{f}" }
+        
+        Dir['slurp'].each { |f| mv f, "bin/#{f}" }
 
         prefix.install_metafiles
         prefix.install Dir['*']
