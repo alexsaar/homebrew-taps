@@ -15,10 +15,6 @@ class JiraSlurper < Formula
     
     # Install
     def install
-        # this is garbage
-        puts "Cleaning up samples..."
-        rm Dir["samples"]
-        
         # move to bin folder
         puts "Moving stuff to bin..."
         Dir.mkdir "bin"
