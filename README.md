@@ -1,4 +1,5 @@
-JIRA-Slurper
-============
+#Homebrew Taps
 
-import JIRA issues from text files
+## JIRA Slurper
+* import JIRA issues from text files
+* https://marketplace.atlassian.com/plugins/org.swift.atlassian.cli
