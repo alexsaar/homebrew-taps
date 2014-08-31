@@ -12,7 +12,7 @@ D_FILE = "issues.txt"
 
 enum FieldNames {
 	p ("project"), t ("type"), prio ("priority"), e ("epic"), l ("labels"), 
-	c ("components"), s ("summary"), d ("description"), fix ("fixVersion");
+	c ("components"), s ("summary"), d ("description"), fix ("fixVersions");
 
     private final String name;       
     private FieldNames(String s) { name = s; }
