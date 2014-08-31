@@ -66,6 +66,9 @@ def slurp(opts) {
 			
 			if (opts.dry) println cmd
 			else {
+				p = cmd.execute(); p.waitFor()
+				if (p.exitValue()) print p.err.text
+				else print p.text
 			}
 		}
 	}
