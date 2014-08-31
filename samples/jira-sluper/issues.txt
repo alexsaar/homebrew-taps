@@ -1,19 +1,19 @@
 p:TEST
 t:bug
 prio:major
-l:test,cli
-c:MAC - TagManager Integration
+l:tests,cli
+c:a,Other
 s:my issue
 d:lorem ipsum
-theme:MarketingCloud-Integration
+#theme:MarketingCloud-Integration
 fix:2
 
 p:TEST
 t:improvement
 prio:normal
-e:CQ-21675
-l:test
-c:MAC - TagManager Integration
+ #e:CQ-21675
+l:tests
+c:b
 s:my issue 2
 d:dolor set blablavla
 fix:1.2.3
