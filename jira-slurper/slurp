@@ -46,7 +46,7 @@ def slurp(opts) {
 		
 		def issue = [:]
 		f.eachLine { line ->
-			if (line.trim()) {
+			if (line.trim() && !line.trim().startsWith("#")) {
 				def (key, value) = line.split(':').collect { it.trim() }
 				issue[FieldNames.contains("$key") ? FieldNames.valueOf("$key") : "$key"] = value
 			} else {
