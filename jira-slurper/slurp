@@ -28,6 +28,7 @@ enum FieldNames {
 cli = new CliBuilder(usage:'./slurp [options]', header:'Options:')
 cli.with {
 	h longOpt: 'help', 'Show usage information'
+	d longOpt: 'dry', args: 0, "dry run"
 	f longOpt: 'file', args: 1, argName: 'file', "file to slurp (defaults to ${D_FILE})"
 }
 
@@ -60,9 +61,15 @@ def slurp(opts) {
 	    }
 		
 		issues.eachWithIndex { it, index ->
-			print "jira --action createIssue "
-			it.each { k, v -> print " --$k \"$v\"" }
-			println ""
+			cmd = "jira --action createIssue "
+			it.each { k, v -> cmd += " --$k \"$v\"" }
+			
+			if (opts.dry) println cmd
+			else {
+				p = cmd.execute(); p.waitFor()
+				if (p.exitValue()) print p.err.text
+				else print p.text
+			}
 		}
 	}
 }
