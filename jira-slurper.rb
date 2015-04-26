@@ -7,8 +7,8 @@ class JiraSlurper < Formula
     def release() "1" end   # custom release field
 
     homepage 'https://github.com/alexsaar/taps/wiki/JIRA-Slurper'
-    url "https://raw.githubusercontent.com/alexsaar/jslurp/master/src/slurp"
-    sha1 'c2eb9e3e1aa46200c3474b8ce39245d0b073bd23'
+    url "https://raw.githubusercontent.com/alexsaar/jslurp/master/src/jslurp.groovy"
+    sha1 'fd332c93a5b63fd3f032f6d998d0c2cf4e64694d'
 
     # dependencies
     depends_on "groovy"
@@ -19,8 +19,8 @@ class JiraSlurper < Formula
         puts "Moving stuff to bin..."
         Dir.mkdir "bin"
         
-        Dir['slurp'].each { |f| mv f, "bin/#{f}" }
-
+        Dir['jslurp.groovy'].each { |f| mv f, "bin/#{f.gsub('.groovy', '')}" }
+        
         prefix.install_metafiles
         prefix.install Dir['*']
     end
