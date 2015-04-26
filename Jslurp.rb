@@ -12,7 +12,6 @@ class Jslurp < Formula
     
   def install
     # move to bin folder
-    puts "Moving stuff to bin..."
     Dir.mkdir "bin"
     Dir['jslurp.groovy'].each { |f| mv f, "bin/#{f.gsub('.groovy', '')}" }
         
