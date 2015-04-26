@@ -1,7 +1,7 @@
 require 'formula'
 
 # Homebrew formula to install JIRA slurper
-class JiraSlurper < Formula
+class JSlurp < Formula
 
     version "1.0.0"
     def release() "1" end   # custom release field
