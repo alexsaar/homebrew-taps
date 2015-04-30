@@ -4,7 +4,7 @@ require 'formula'
 class Jslurp < Formula
 
   homepage 'https://github.com/alexsaar/jslurp'
-  url "https://raw.githubusercontent.com/alexsaar/jslurp/v1.0.0/src/jslurp.groovy"
+  url "https://raw.githubusercontent.com/alexsaar/jira-utils/v1.0.0/src/jslurp.groovy"
   sha1 'fd332c93a5b63fd3f032f6d998d0c2cf4e64694d'
   version "1.0.0"
   
